@@ -1,3 +1,5 @@
 /.vagrant
 /awesome
 /phpmyadmin
+/vendor
+composer.lock
