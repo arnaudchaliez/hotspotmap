@@ -10,6 +10,10 @@ vagrantfile-local:
                 1SzxLAAXK4bB:
                     host: '8832'
                     guest: '22'
+            forwarded_port:
+                web:
+                    host: '8080'
+                    guest: '80'
         provider:
             virtualbox:
                 modifyvm:
@@ -68,7 +72,7 @@ apache:
             servername: awesome.dev
             serveraliases:
                 - www.awesome.dev
-            docroot: /var/www/awesome
+            docroot: /var/www/web
             port: '80'
             setenv:
                 - 'APP_ENV dev'
