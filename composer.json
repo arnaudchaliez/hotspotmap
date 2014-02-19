@@ -11,5 +11,9 @@
 	
 	"config": {
         "bin-dir": "bin/"
+    },
+
+    "autoload": {
+        "psr-4": { "HotspotMap\\": "src/HotspotMap/" }
     }
 }
