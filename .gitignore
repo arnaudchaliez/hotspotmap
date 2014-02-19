@@ -3,4 +3,5 @@
 /awesome
 /phpmyadmin
 /vendor
+/bin
 composer.lock
