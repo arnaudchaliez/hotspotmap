@@ -68,11 +68,11 @@ apache:
         - php
         - rewrite
     vhosts:
-        qj0UAUOXc1wV:
-            servername: awesome.dev
+        hotspotmap:
+            servername: hotspotmap.dev
             serveraliases:
-                - www.awesome.dev
-            docroot: /var/www/web
+                - www.hotspotmap.dev
+            docroot: /var/www/web/
             port: '80'
             setenv:
                 - 'APP_ENV dev'
@@ -120,7 +120,7 @@ mariadb:
     phpmyadmin: '1'
     adminer: 0
     databases:
-        PM6DVzuMj02G:
+        hotspotmap:
             grant:
                 - ALL
             name: hotspotmap

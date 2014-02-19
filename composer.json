@@ -1,5 +1,19 @@
 {
+	"name": "kinokoh/hotspotmap",
+	
     "require": {
-        "silex/silex": "~1.1"
+        "silex/silex": "~1.1",
+		"twig/twig": "1.*",
+		"willdurand/geocoder": "@stable",
+		"behat/behat": "2.4.*@stable",
+		"phpunit/phpunit": "3.7.*"
+    },
+	
+	"config": {
+        "bin-dir": "bin/"
+    },
+
+    "autoload": {
+        "psr-4": { "HotspotMap\\": "src/HotspotMap/" }
     }
 }
