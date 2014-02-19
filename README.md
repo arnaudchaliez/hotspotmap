@@ -24,3 +24,5 @@ Features embedded in the VM are:
 - MariaDB
 - Redirection on SSH, FTP
 - Access of the web server on http://192.168.56.101/
+
+If you use Windows, be careful with the end line characters. Set git core.autocrlf to false in local.
