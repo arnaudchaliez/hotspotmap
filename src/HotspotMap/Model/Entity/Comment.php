@@ -1,14 +1,14 @@
 <?php
 /**
- * File: Price.php
+ * File: Comment.php
  * Date: 19/02/14
  * Created by Jérémy BOUNY & Arnaud CHALIEZ.
  * Project: hotspotmap
  */
 
-namespace HotspotMap\Model\ValueObject;
+namespace HotspotMap\Model\Entity;
 
 
-class Price {
+class Comment {
 
 } 
