@@ -7,7 +7,7 @@ vagrantfile-local:
         network:
             private_network: 192.168.56.101
             forwarded_port:
-                1SzxLAAXK4bB:
+                hotspotmap:
                     host: '8832'
                     guest: '22'
             forwarded_port:
@@ -30,7 +30,7 @@ vagrantfile-local:
                     - '--hiera_config /vagrant/puphpet/puppet/hiera.yaml'
                     - '--parser future'
         synced_folder:
-            j2mYroKKLYt2:
+            hotspotmap:
                 id: vagrant-root
                 source: ./
                 target: /var/www

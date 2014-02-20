@@ -9,6 +9,21 @@
 namespace HotspotMap\Model\ValueObject;
 
 
-class Address {
+class Address
+{
+    public $street;
 
+    public $postalCode;
+
+    public $city;
+
+    public $country;
+
+    public function __construct($street, $postalCode, $city, $country)
+    {
+        $this->street = $street;
+        $this->postalCode = $postalCode;
+        $this->city = $city;
+        $this->country = $country;
+    }
 } 

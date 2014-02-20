@@ -8,7 +8,6 @@
 
 namespace HotspotMap\Model\ValueObject;
 
-
 class Role {
 
 } 

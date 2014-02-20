@@ -9,6 +9,15 @@
 namespace HotspotMap\Model\ValueObject;
 
 
-class Name {
+class Name
+{
+    public $surname;
 
+    public $name;
+
+    public function __construct($surname, $name)
+    {
+        $this->surname = $surname;
+        $this->name = $name;
+    }
 } 
