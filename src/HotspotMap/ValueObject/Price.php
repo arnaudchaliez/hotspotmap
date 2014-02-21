@@ -30,7 +30,7 @@ class Price
         }
         return Price::getRate($currency) * $this->value;
     }
-
+/*
     public function setValue($value, $currency = null)
     {
         if($currency === null) {
@@ -40,7 +40,7 @@ class Price
             $this->value = Price::getRate($currency) / $this->value;
         }
     }
-
+*/
     public static function getRate($currency)
     {
         if(array_key_exists($currency, Price::$rates)) {

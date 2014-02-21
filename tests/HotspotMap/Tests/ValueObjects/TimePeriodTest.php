@@ -8,8 +8,7 @@
 
 namespace HotspotMap\Tests\ValueObjects;
 
-
-use HotspotMap\Model\ValueObject\TimePeriod;
+use HotspotMap\ValueObject\TimePeriod;
 
 class TimePeriodTest extends \PHPUnit_Framework_TestCase
 {

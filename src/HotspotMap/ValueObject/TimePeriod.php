@@ -6,18 +6,28 @@
  * Project: hotspotmap
  */
 
-namespace HotspotMap\Model\ValueObject;
+namespace HotspotMap\ValueObject;
 
 class TimePeriod
 {
-    public $begin;
+    private $begin;
 
-    public $end;
+    private $end;
 
     public function __construct($begin, $end)
     {
         $this->begin = $begin;
-        $this->end = $end;
+        $this->end   = $end;
+    }
+
+    public function getBegin()
+    {
+        return $this->begin;
+    }
+
+    public function getEnd()
+    {
+        return $this->end;
     }
 
     /**

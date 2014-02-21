@@ -6,8 +6,7 @@
  * Project: hotspotmap
  */
 
-namespace HotspotMap\Model\ValueObject;
-
+namespace HotspotMap\ValueObject;
 
 class Schedule
 {
