@@ -6,7 +6,7 @@
  * Project: hotspotmap
  */
 
-namespace HotspotMap\ValueObject;
+namespace HotspotMap\CoreDomain\ValueObject;
 
 
 class Address

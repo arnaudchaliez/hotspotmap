@@ -6,9 +6,9 @@
  * Project: hotspotmap
  */
 
-namespace HotspotMap\Tests\ValueObjects;
+namespace HotspotMap\Tests\ValueObject;
 
-use HotspotMap\ValueObject\TimePeriod;
+use HotspotMap\CoreDomain\ValueObject\TimePeriod;
 
 class TimePeriodTest extends \PHPUnit_Framework_TestCase
 {

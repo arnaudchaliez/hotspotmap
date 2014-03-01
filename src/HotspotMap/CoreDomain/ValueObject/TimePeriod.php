@@ -6,7 +6,7 @@
  * Project: hotspotmap
  */
 
-namespace HotspotMap\ValueObject;
+namespace HotspotMap\CoreDomain\ValueObject;
 
 class TimePeriod
 {
@@ -36,16 +36,16 @@ class TimePeriod
      */
     public function compareTo(TimePeriod $period)
     {
-        if($this->begin < $period->begin) {
+        if ($this->begin < $period->begin) {
             return -1;
         }
-        if($this->begin > $period->begin) {
+        if ($this->begin > $period->begin) {
             return 1;
         }
-        if($this->end < $period->end) {
+        if ($this->end < $period->end) {
             return -1;
         }
-        if($this->end > $period->end) {
+        if ($this->end > $period->end) {
             return 1;
         }
         return 0;

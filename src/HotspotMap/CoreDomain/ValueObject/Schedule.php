@@ -6,7 +6,7 @@
  * Project: hotspotmap
  */
 
-namespace HotspotMap\ValueObject;
+namespace HotspotMap\CoreDomain\ValueObject;
 
 class Schedule
 {
@@ -15,6 +15,15 @@ class Schedule
     public function __construct()
     {
         $this->timePeriods = array();
+    }
+
+    public function __clone()
+    {
+        $timePeriods = $this->timePeriods;
+        $this->timePeriods = [];
+
+        foreach($timePeriods as $period)
+            $this->timePeriods[] = clone $period;
     }
 
     public function getPeriods()
@@ -29,9 +38,9 @@ class Schedule
     public function addPeriod(TimePeriod $period)
     {
         $size = count($this->timePeriods);
-        for($i = 0; $i < $size; ++$i) {
-            if($period->compareTo($this->timePeriods[$i]) === -1) {
-                array_splice($this->timePeriods, $i, 0, $period);
+        for ($i = 0; $i < $size; $i++) {
+            if (-1 === $period->compareTo($this->timePeriods[$i])) {
+                array_splice($this->timePeriods, $i, 0, array($period));
                 return;
             }
         }

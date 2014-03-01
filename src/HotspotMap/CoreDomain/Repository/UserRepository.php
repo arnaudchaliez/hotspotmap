@@ -6,14 +6,24 @@
  * Project: hotspotmap
  */
 
-namespace HotspotMap\CoreDomain\User;
+namespace HotspotMap\CoreDomain\Repository;
+use HotspotMap\CoreDomain\Entity\User;
 
 interface UserRepository
 {
+    /**
+     * @param User $user
+     */
     public function add(User $user);
 
+    /**
+     * @param User $user
+     */
     public function remove(User $user);
 
+    /**
+     * @param User $user
+     */
     public function update(User $user);
 
     /**

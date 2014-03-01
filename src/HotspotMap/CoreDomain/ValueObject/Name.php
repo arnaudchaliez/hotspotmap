@@ -6,7 +6,7 @@
  * Project: hotspotmap
  */
 
-namespace HotspotMap\ValueObject;
+namespace HotspotMap\CoreDomain\ValueObject;
 
 class Name
 {
@@ -14,7 +14,7 @@ class Name
 
     private $lastName;
 
-    public function __construct($firstName, $lastName)
+    public function __construct($firstName = '', $lastName = '')
     {
         $this->firstName = $firstName;
         $this->lastName  = $lastName;

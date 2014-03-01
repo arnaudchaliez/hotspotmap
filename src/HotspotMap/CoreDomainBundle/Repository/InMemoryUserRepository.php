@@ -8,9 +8,9 @@
 
 namespace HotspotMap\CoreDomainBundle\Repository;
 
-use HotspotMap\CoreDomain\User\User;
-use HotspotMap\CoreDomain\User\UserRepository;
-use HotspotMap\ValueObject\Name;
+use HotspotMap\CoreDomain\Entity\User;
+use HotspotMap\CoreDomain\Repository\UserRepository;
+use HotspotMap\CoreDomain\ValueObject\Name;
 
 class InMemoryUserRepository implements UserRepository
 {
@@ -18,7 +18,13 @@ class InMemoryUserRepository implements UserRepository
 
     public function __construct()
     {
-        $this->users[] = new User(0, new Name("Chuck", "Norris"));
+        $this->users[] = new User(new Name('Chuck', 'Norris'));
+        $this->users[] = new User(new Name('Silvia', 'Godoy'));
+        $this->users[] = new User(new Name('Wade', 'Bruton'));
+        $this->users[] = new User(new Name('Pearl', 'Bolt'));
+        $this->users[] = new User(new Name('Margaret', 'May'));
+        $this->users[] = new User(new Name('Susie', 'Pearson'));
+        $this->users[] = new User(new Name('Melvin', 'Cole'));
     }
 
     public function add(User $user)

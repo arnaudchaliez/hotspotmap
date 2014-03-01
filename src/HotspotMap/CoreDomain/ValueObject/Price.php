@@ -6,8 +6,7 @@
  * Project: hotspotmap
  */
 
-namespace HotspotMap\Model\ValueObject;
-
+namespace HotspotMap\CoreDomain\ValueObject;
 
 class Price
 {
@@ -25,25 +24,23 @@ class Price
 
     public function getValue($currency = null)
     {
-        if($currency === null) {
+        if (null === $currency) {
             return $this->value;
         }
         return Price::getRate($currency) * $this->value;
     }
-/*
+
     public function setValue($value, $currency = null)
     {
-        if($currency === null) {
-            return $this->value = $value;
-        }
-        else {
-            $this->value = Price::getRate($currency) / $this->value;
+        $this->value = $value;
+        if (null !== $currency) {
+            $this->value /= Price::getRate($currency);
         }
     }
-*/
+
     public static function getRate($currency)
     {
-        if(array_key_exists($currency, Price::$rates)) {
+        if (array_key_exists($currency, Price::$rates)) {
             return Price::$rates[$currency];
         }
         return 1.0;
