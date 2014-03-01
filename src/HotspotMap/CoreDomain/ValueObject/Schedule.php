@@ -22,8 +22,9 @@ class Schedule
         $timePeriods = $this->timePeriods;
         $this->timePeriods = [];
 
-        foreach($timePeriods as $period)
+        foreach ($timePeriods as $period) {
             $this->timePeriods[] = clone $period;
+        }
     }
 
     public function getPeriods()

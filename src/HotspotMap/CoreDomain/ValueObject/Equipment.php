@@ -8,7 +8,6 @@
 
 namespace HotspotMap\CoreDomain\ValueObject;
 
-
 class Equipment
 {
 

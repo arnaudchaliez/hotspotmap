@@ -30,8 +30,9 @@ class ScheduleTest extends \PHPUnit_Framework_TestCase
         $periods[] = new TimePeriod( 5, 7 );
         $periods[] = new TimePeriod( 5, 6 );
 
-        for ($i = 0; $i < 3; $i++)
+        for ($i = 0; $i < 3; $i++) {
             $schedule->addPeriod($periods[$i]);
+        }
 
         $this->assertEquals( count($schedule->getPeriods()), 3 );
     }
@@ -46,8 +47,9 @@ class ScheduleTest extends \PHPUnit_Framework_TestCase
         $periods[] = new TimePeriod( 5, 6 );
         $periods[] = new TimePeriod( 6, 7 );
 
-        for ($i = 0; $i < 4; $i++)
+        for ($i = 0; $i < 4; $i++) {
             $schedule->addPeriod($periods[$i]);
+        }
 
         // p2 < p0 == p1 < p3
         $this->assertEquals(count($schedule->getPeriods()), 4);

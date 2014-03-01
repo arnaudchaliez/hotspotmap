@@ -7,7 +7,9 @@
  */
 
 namespace HotspotMap\CoreDomain\Repository;
+
 use HotspotMap\CoreDomain\Entity\User;
+use HotspotMap\CoreDomainBundle\Specification\Specification;
 
 interface UserRepository
 {
@@ -38,8 +40,5 @@ interface UserRepository
 
     public function removeAll();
 
-    /**
-     * @param User
-     */
-    public function find($userId);
+    public function findSatisfying(Specification $specification);
 } 

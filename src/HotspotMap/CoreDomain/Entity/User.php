@@ -10,30 +10,20 @@ namespace HotspotMap\CoreDomain\Entity;
 
 use HotspotMap\CoreDomain\ValueObject\Name;
 
-class User
+class User extends Entity
 {
-    private $id;
-
     private $name;
 
     public function __construct(Name $name, $id = null)
     {
-        $this->setId($id);
+        parent::__construct($id, 'user_');
         $this->name = $name;
     }
 
     public function __clone()
     {
+        parent::__clone();
         $this->name = clone $this->name;
-        $this->setId(null);
-    }
-
-    /**
-     * @return string
-     */
-    public function getId()
-    {
-        return $this->id;
     }
 
     /**
@@ -42,15 +32,5 @@ class User
     public function getName()
     {
         return $this->name;
-    }
-
-    private function setId($id)
-    {
-        if (null === $id) {
-            $this->id = uniqid('user');
-        }
-        else {
-            $this->id = $id;
-        }
     }
 }

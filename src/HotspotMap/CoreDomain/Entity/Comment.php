@@ -8,7 +8,6 @@
 
 namespace HotspotMap\CoreDomain\Entity;
 
-
 class Comment
 {
 

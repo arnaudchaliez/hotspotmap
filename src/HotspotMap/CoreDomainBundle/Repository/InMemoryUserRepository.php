@@ -11,40 +11,48 @@ namespace HotspotMap\CoreDomainBundle\Repository;
 use HotspotMap\CoreDomain\Entity\User;
 use HotspotMap\CoreDomain\Repository\UserRepository;
 use HotspotMap\CoreDomain\ValueObject\Name;
+use HotspotMap\CoreDomainBundle\Specification\Specification;
+use HotspotMap\Helper\SpecificationFilter;
+use HotspotMap\Persistence\InMemoryMapper;
 
 class InMemoryUserRepository implements UserRepository
 {
-    private $users;
+    use SpecificationFilter;
+
+    private $memory;
 
     public function __construct()
     {
-        $this->users[] = new User(new Name('Chuck', 'Norris'));
-        $this->users[] = new User(new Name('Silvia', 'Godoy'));
-        $this->users[] = new User(new Name('Wade', 'Bruton'));
-        $this->users[] = new User(new Name('Pearl', 'Bolt'));
-        $this->users[] = new User(new Name('Margaret', 'May'));
-        $this->users[] = new User(new Name('Susie', 'Pearson'));
-        $this->users[] = new User(new Name('Melvin', 'Cole'));
+        $this->memory = new InMemoryMapper();
+        $this->memory->persist(new User(new Name('Chuck', 'Norris')));
+        $this->memory->persist(new User(new Name('Silvia', 'Godoy')));
+        $this->memory->persist(new User(new Name('Wade', 'Bruton')));
+        $this->memory->persist(new User(new Name('Pearl', 'Bolt')));
+        $this->memory->persist(new User(new Name('Margaret', 'May')));
+        $this->memory->persist(new User(new Name('Susie', 'Pearson')));
+        $this->memory->persist(new User(new Name('Melvin', 'Cole')));
     }
 
     public function add(User $user)
     {
-        $this->users[] = $user;
+        $this->memory->persist($user);
     }
 
     public function remove(User $user)
     {
+        return $this->memory->remove($user);
     }
 
     public function update(User $user)
-    {}
+    {
+    }
 
     /**
      * @return User[]
      */
     public function findAll()
     {
-        return $this->users;
+        return $this->memory->retrieveAll();
     }
 
     /**
@@ -52,18 +60,21 @@ class InMemoryUserRepository implements UserRepository
      */
     public function countAll()
     {
-        return count($this->users);
+        return count($this->memory->retrieveAll());
     }
 
     public function removeAll()
     {
-        $this->users = array();
+        $this->memory->removeAll();
     }
 
-    /**
-     * @return User
-     */
     public function find($userId)
     {
+        return $this->memory->retrieve($userId);
+    }
+
+    public function findSatisfying(Specification $specification)
+    {
+        return $this->filter($this->memory->retrieveAll(), $specification);
     }
 } 

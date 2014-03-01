@@ -8,6 +8,7 @@
 
 namespace HotspotMap\CoreDomain\ValueObject;
 
-class Role {
+class Role
+{
 
 } 
