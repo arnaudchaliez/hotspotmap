@@ -6,9 +6,9 @@
  * Project: hotspotmap
  */
 
-namespace HotspotMap\Model\Entity;
+namespace HotspotMap\CoreDomain\Entity;
 
-
-class Comment {
+class Comment
+{
 
 } 

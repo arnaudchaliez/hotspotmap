@@ -16,4 +16,4 @@ class HomeController {
     {
         return $app['twig']->render('index.html', array('name' => 'World') );
     }
-} 
+}

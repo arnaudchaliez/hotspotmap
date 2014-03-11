@@ -6,9 +6,9 @@
  * Project: hotspotmap
  */
 
-namespace HotspotMap\Model\ValueObject;
+namespace HotspotMap\CoreDomain\ValueObject;
 
-
-class Equipment {
+class Equipment
+{
 
 } 
