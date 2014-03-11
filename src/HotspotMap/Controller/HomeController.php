@@ -1,15 +1,16 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: Jeremy
+ * File: HomeCotnroller.php
  * Date: 19/02/14
- * Time: 16:03
+ * Created by Jérémy BOUNY & Arnaud CHALIEZ.
+ * Project: hotspotmap
  */
 
 namespace HotspotMap\Controller;
 
 use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class HomeController {
     public function indexAction(Request $request, Application $app)

@@ -5,8 +5,10 @@
         "silex/silex": "~1.1",
 		"twig/twig": "1.*",
 		"willdurand/geocoder": "@stable",
+        "willdurand/negotiation": "@stable",
 		"behat/behat": "2.4.*@stable",
-		"phpunit/phpunit": "3.7.*"
+		"phpunit/phpunit": "3.7.*",
+        "symfony/serializer": "2.4.2"
     },
 	
 	"config": {
