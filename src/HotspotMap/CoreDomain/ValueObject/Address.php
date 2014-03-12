@@ -45,4 +45,9 @@ class Address
     {
         return $this->country;
     }
+
+    public function __toString()
+    {
+        return $this->street . ' ' . $this->postalCode . ' ' . $this->city . ' (' . $this->country . ').';
+    }
 } 

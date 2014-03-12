@@ -50,6 +50,11 @@ $app['repository.user'] = $app->share(function() use ($app) {
     //return new \HotspotMap\CoreDomain\Repository\UserRepository();
 });
 
+$app['repository.hotspot'] = $app->share(function() use ($app) {
+    return new HotspotMap\CoreDomainBundle\Repository\InMemoryHotspotRepository();
+    //return new \HotspotMap\CoreDomain\Repository\HotspotRepository();
+});
+
 
 /** controllers */
 
@@ -61,6 +66,11 @@ $app['home.controller'] = $app->share(function() use ($app) {
 //user
 $app['user.controller'] = $app->share(function() use ($app) {
     return new \HotspotMap\Controller\UserController($app['repository.user'], $app);
+});
+
+//hotspot
+$app['hotspot.controller'] = $app->share(function() use ($app) {
+    return new \HotspotMap\Controller\HotspotController($app['repository.hotspot'], $app);
 });
 
 /** helpers */
@@ -79,6 +89,10 @@ $app->get('/', 'home.controller:indexAction');
 
 //users
 $app->get('/users', 'user.controller:usersAction');
+
+//hotspots
+$app->get('/hotspots', 'hotspot.controller:hotspotsAction');
+
 
 /** events management */
 
