@@ -16,4 +16,6 @@ class Equipment {
     const Pizza = 4;
     const Restaurant = 5;
     const FastFood = 6;
+
+    const NumberEquipments = 7;
 }

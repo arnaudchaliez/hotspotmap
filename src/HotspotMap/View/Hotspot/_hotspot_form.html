@@ -1,0 +1,103 @@
+<form class="form-horizontal">
+    <fieldset>
+
+        <legend>Hotspot</legend>
+
+        <div class="control-group">
+            <label class="control-label" for="name">Name</label>
+            <div class="controls">
+                <input id="name" name="name" type="text" placeholder="" class="input-xlarge" required="">
+                <p class="help-block">Give a name to the hotspot</p>
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label" for="description">Description</label>
+            <div class="controls">
+                <input id="description" name="description" type="text" placeholder="" class="input-xlarge">
+                <p class="help-block">Give a short description of this place</p>
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label" for="thumbnail">Thumbnail</label>
+            <div class="controls">
+                <input id="thumbnail" name="thumbnail" type="text" placeholder="" class="input-xlarge">
+                <p class="help-block">Give the path of a  small picture</p>
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label" for="street">Street :</label>
+            <div class="controls">
+                <input id="street" name="street" type="text" placeholder="" class="input-xlarge" required="">
+                <p class="help-block">Give the street (including number)</p>
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label" for="postalCode">ZIP Code</label>
+            <div class="controls">
+                <input id="postalCode" name="postalCode" type="text" placeholder="" class="input-xlarge" required="">
+
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label" for="city">City</label>
+            <div class="controls">
+                <input id="city" name="city" type="text" placeholder="" class="input-xlarge" required="">
+
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label" for="country">Country</label>
+            <div class="controls">
+                <input id="country" name="country" type="text" placeholder="" class="input-xlarge" required="">
+
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label" for="price">Price</label>
+            <div class="controls">
+                <input id="price" name="price" type="text" placeholder="0" class="input-xlarge" required="">
+
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label" for="open">Open :</label>
+            <div class="controls">
+                <input id="open" name="open" type="text" placeholder="" class="input-xlarge">
+
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label" for="close">Close</label>
+            <div class="controls">
+                <input id="close" name="close" type="text" placeholder="" class="input-xlarge">
+
+            </div>
+        </div>
+
+        <!-- Multiple Checkboxes (inline) -->
+        <div class="control-group">
+            <label class="control-label" for="equipments">Equipments</label>
+            <div class="controls">
+
+                {% for i in 0..getNumberEquipments()-1 %}
+                <label class="checkbox inline" for="equipments-{{ i }}">
+                    <input type="checkbox" name="equipments" id="equipments-{{ i }}" value="{{ i }}">
+                    <div class="icon-large icon-{{ i }}" ></div>
+                </label>
+                {% endfor %}
+
+            </div>
+        </div>
+
+        <button type="submit">Submit</button>
+    </fieldset>
+</form>

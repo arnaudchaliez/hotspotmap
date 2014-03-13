@@ -12,9 +12,15 @@ use Symfony\Component\Serializer\Normalizer\GetSetMethodNormalizer;
 
 $app = new Application();
 
+$function = new Twig_SimpleFunction('getNumberEquipments', function () {
+    return \HotspotMap\CoreDomain\ValueObject\Equipment::NumberEquipments;
+});
+
 $app->register(new Silex\Provider\TwigServiceProvider(), array(
     'twig.path' => __DIR__.'/../src/HotspotMap/View'
 ));
+$app['twig']->addFunction($function);
+
 $app->register(new Silex\Provider\ServiceControllerServiceProvider());
 
 //serializers
@@ -77,6 +83,10 @@ $app['hotspot.controller'] = $app->share(function() use ($app) {
 
 $app['helper.response'] = $app->share(function () use ($app) {
     return new \HotspotMap\Helper\ResponseHandler('rest.serializer', $app['request'], $app['twig'], array('','application/json','application/xml','text/html'));
+});
+
+$app['helper.geocoder'] = $app->share(function () use ($app) {
+    return new \HotspotMap\Helper\GeocoderHelper();
 });
 
 // definitions

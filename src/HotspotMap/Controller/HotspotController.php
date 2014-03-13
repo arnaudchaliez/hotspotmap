@@ -8,6 +8,12 @@
 
 namespace HotspotMap\Controller;
 
+use HotspotMap\CoreDomain\Entity\Hotspot;
+use HotspotMap\CoreDomain\ValueObject\Address;
+use HotspotMap\CoreDomain\ValueObject\PlaceIdentity;
+use HotspotMap\CoreDomain\ValueObject\Price;
+use HotspotMap\CoreDomain\ValueObject\Schedule;
+use HotspotMap\CoreDomain\ValueObject\SocialInformation;
 use HotspotMap\CoreDomainBundle\Specification\ValueSpecification;
 use Silex\Application;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -47,6 +53,24 @@ class HotspotController {
             return $app['helper.response']->handle('hotspot not found', 'error.html', 404);
     }
 
+    public function addAction(Request $request, Application $app)
+    {
+
+        $hotspot = $this->createHotspotFromRequest($request);
+
+        if ($hotspot)
+        {
+            if ($this->hotspotRepository->add($hotspot))
+            {
+                return $app['helper.response']->handle($hotspot, 'Hotspot/hotspot.html', 201);
+            }
+
+            return $app['helper.response']->handle('error adding hotspot', 'error.html', 400);
+        }
+
+        return $app['helper.response']->handle('error creating hotspot', 'error.html', 400);
+    }
+
     public function updateAction(Request $request, Application $app)
     {
         //return $app['helper.response']->handle($this->hotspotRepository->findAll(), 'Hotspot/hotspots.html');
@@ -55,5 +79,23 @@ class HotspotController {
     {
         $hotspot = $this->hotspotRepository->findSatisfying(new ValueSpecification('getId', $id));
         return new Response($this->hotspotRepository->remove($hotspot));
+    }
+
+    protected function createHotspotFromRequest(Request $request)
+    {
+        Hotspot::$hotspot = null;
+        extract($request->attributes);
+        //todo verif params
+        if (isset($name))
+            $hotspot = new Hotspot(
+                new PlaceIdentity($name, $description, $thumbnail),
+                new Address($street, $postalCode, $city, $country),
+                new Price($price),
+                new Schedule(),
+                new array($equipments),
+                new SocialInformation($facebook, $twitter)
+            );
+
+        return $hotspot;
     }
 } 

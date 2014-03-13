@@ -51,6 +51,11 @@ body {
     height: 80%;
 }
 
+.checkbox.inline {
+    display: inline-block;
+}
+
+
 /** --------- equipments -------- */
 .icon-large {
     background-image: url("../pictures/glyphicons.png");
