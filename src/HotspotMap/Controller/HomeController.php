@@ -15,6 +15,10 @@ use Symfony\Component\HttpFoundation\Response;
 class HomeController {
     public function indexAction(Request $request, Application $app)
     {
-        return $app['twig']->render('index.html', array('name' => 'World') );
+        $hotspots = $app['repository.hotspot']->findAll();
+        return $app['twig']->render(
+            'index.html',
+            array('hotspots' => $hotspots)
+        );
     }
 }

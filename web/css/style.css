@@ -1,0 +1,79 @@
+html {
+    height: 100%;
+}
+
+body {
+    background-color: #eeeeee;
+    padding-top: 55px;
+    padding-bottom: 50px;
+    height: 100%;
+}
+.navbar-inverse {
+    background-color: #222;
+    border-color: #080808;
+}
+
+.logo {
+    background:url(../pictures/logo_hotspotmap.png) no-repeat;
+    background-size:contain;
+    width: 110px;
+    height: 50px;
+    float: left;
+}
+
+.fill {
+    height: 100%;
+}
+
+#footer {
+    min-height: 20px !important;
+    color: #aaa;
+}
+
+#hotspot-content {
+   min-height: 800px;
+}
+
+#content {
+    height: 100%;
+}
+
+#center-map {
+    height: 100%;
+}
+#map {
+    height: 100%;
+    min-height: 100%;
+    display: block;
+}
+
+#map-canvas{
+    height: 80%;
+}
+
+/** --------- equipments -------- */
+.icon-large {
+    background-image: url("../pictures/glyphicons.png");
+    background-position: 24px 24px;
+    background-repeat: no-repeat;
+    display: inline-block;
+    height: 28px;
+    line-height: 28px;
+    vertical-align: text-bottom;
+    width: 28px;
+}
+
+/* free */
+.icon-large.icon-0{ background-position: -46px -305px;  }
+/** sofa */
+.icon-large.icon-1{ background-position: -276px -646px;  }
+/* coffee */
+.icon-large.icon-2{ background-position: -184px -1593px;  }
+/* beer */
+.icon-large.icon-3{ background-position: -184px -936px;  }
+/* pizza */
+.icon-large.icon-4{ background-position: -184px -1038px;  }
+/* restaurant */
+.icon-large.icon-5{ background-position: -184px -1004px;  }
+/* fast-food */
+.icon-large.icon-6{ background-position: -184px -970px;  }

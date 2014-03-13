@@ -1,15 +1,11 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title></title>
-</head>
-<body>
-    <h1>Hotspots</h1>
-    {% for hotspot in data %}
-        <h3>{{ hotspot.getName() }}</h3>
-        <div>
-            Address : {{ hotspot.getAddress() }}
-        </div>
-    {% endfor %}
-</body>
-</html>
+{% extends "Layout/base.html" %}
+
+{% block title %}Hotspots{% endblock %}
+{% block content %}
+
+<h1>Hotspots</h1>
+{% for hotspot in data %}
+    {{ include('Hotspot/_hotspot_full.html', { hotspot: hotspot }, with_context = false) }}
+{% endfor %}
+
+{% endblock %}

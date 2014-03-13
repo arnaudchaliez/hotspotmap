@@ -1,0 +1,8 @@
+{% extends "Layout/base.html" %}
+
+{% block title %}Hotspots{% endblock %}
+{% block content %}
+
+{{ include('Hotspot/_hotspot_full.html', { hotspot: data }, with_context = false) }}
+
+{% endblock %}

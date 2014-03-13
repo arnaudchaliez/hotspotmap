@@ -11,20 +11,21 @@ namespace HotspotMap\Tests\Entity;
 use HotspotMap\CoreDomain\Entity\Hotspot;
 use HotspotMap\CoreDomain\ValueObject\Address;
 use HotspotMap\CoreDomain\ValueObject\Name;
+use HotspotMap\CoreDomain\ValueObject\PlaceIdentity;
 
 class HotspotTest extends \PHPUnit_Framework_TestCase
 {
     public function testConstruct()
     {
-        $hotspot = new Hotspot('McDonald\'s', new Address('Avenue des États Unis', '63000', 'Clermont-Ferrand', 'France'));
+        $hotspot = new Hotspot(new PlaceIdentity('McDonald\'s'), new Address('Avenue des États Unis', '63000', 'Clermont-Ferrand', 'France'));
 
         $this->assertTrue(null !== $hotspot->getId());
-        $this->assertEquals($hotspot->getName(), 'McDonald\'s');
+        $this->assertEquals($hotspot->getPlace()->getName(), 'McDonald\'s');
     }
 
     public function testClone()
     {
-        $hotspots[] = new Hotspot('McDonald\'s', new Address('Avenue des États Unis', '63000', 'Clermont-Ferrand', 'France'));
+        $hotspots[] = new Hotspot(new PlaceIdentity('McDonald\'s'), new Address('Avenue des États Unis', '63000', 'Clermont-Ferrand', 'France'));
 
         $hotspots[] = $hotspots[0];
         $hotspots[] = clone $hotspots[0];

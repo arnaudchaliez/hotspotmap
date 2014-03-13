@@ -10,6 +10,8 @@ namespace HotspotMap\CoreDomainBundle\Repository;
 
 use HotspotMap\CoreDomain\Entity\Hotspot;
 use HotspotMap\CoreDomain\Repository\HotspotRepository;
+use HotspotMap\CoreDomain\ValueObject\Equipment;
+use HotspotMap\CoreDomain\ValueObject\PlaceIdentity;
 use HotspotMap\CoreDomain\ValueObject\Price;
 use HotspotMap\CoreDomain\ValueObject\Address;
 use HotspotMap\CoreDomainBundle\Specification\Specification;
@@ -25,17 +27,18 @@ class InMemoryHotspotRepository implements HotspotRepository
     public function __construct()
     {
         $this->memory = new InMemoryMapper();
+        $equipments = array( Equipment::FastFood, Equipment::Sofa );
         $this->memory->persist(
-            new Hotspot('McDonald\'s', new Address('Avenue des États Unis', '63000', 'Clermont-Ferrand', 'France'), new Price(1.0))
+            new Hotspot(new PlaceIdentity('McDonald\'s', 'Famous Fast-food restaurant', '/pictures/mcdonald.png'), new Address('Avenue des États Unis', '63000', 'Clermont-Ferrand', 'France'), new Price(1.0), null, $equipments)
         );
         $this->memory->persist(
-            new Hotspot('Starbucks Des Halles', new Address('place de la Rotonde', '75001', 'Paris ', 'France'))
+            new Hotspot(new PlaceIdentity('Starbucks Des Halles'), new Address('place de la Rotonde', '75001', 'Paris ', 'France'))
         );
         $this->memory->persist(
-            new Hotspot('Starbucks Echelle', new Address('2 Rue de I’Echelle', '75001', 'Paris', 'France'))
+            new Hotspot(new PlaceIdentity('Starbucks Echelle'), new Address('2 Rue de I’Echelle', '75001', 'Paris', 'France'))
         );
         $this->memory->persist(
-            new Hotspot('Starbucks Louvre', new Address('Musee du Louvre', '75001', 'Paris', 'France'))
+            new Hotspot(new PlaceIdentity('Starbucks Louvre'), new Address('Musee du Louvre', '75001', 'Paris', 'France'))
         );
     }
 

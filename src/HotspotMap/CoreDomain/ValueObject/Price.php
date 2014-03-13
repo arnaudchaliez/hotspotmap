@@ -45,4 +45,9 @@ class Price
         }
         return 1.0;
     }
+
+    public function __toString()
+    {
+        return (string)$this->getValue();
+    }
 } 

@@ -10,6 +10,7 @@ namespace HotspotMap\Tests\Repository;
 
 use HotspotMap\CoreDomain\Entity\Hotspot;
 use HotspotMap\CoreDomain\ValueObject\Address;
+use HotspotMap\CoreDomain\ValueObject\PlaceIdentity;
 use HotspotMap\CoreDomainBundle\Repository\InMemoryHotspotRepository;
 use HotspotMap\CoreDomainBundle\Specification\ValueSpecification;
 
@@ -35,7 +36,7 @@ class InMemoryHotspotRepositoryTest extends \PHPUnit_Framework_TestCase
     {
         $repository = new InMemoryHotspotRepository();
 
-        $hotspot = new Hotspot('test', new Address('','','',''), null, null, null, 'test_id');
+        $hotspot = new Hotspot(new PlaceIdentity('test'), new Address('','','',''), null, null, null, null, 'test_id');
         $repository->add($hotspot);
 
         $hotspots = $repository->findSatisfying(new ValueSpecification('getId', 'test_id'));
@@ -48,7 +49,7 @@ class InMemoryHotspotRepositoryTest extends \PHPUnit_Framework_TestCase
     {
         $repository = new InMemoryHotspotRepository();
 
-        $hotspot =  new Hotspot('test', new Address('','','',''), null, null, null, 'test_id');
+        $hotspot = new Hotspot(new PlaceIdentity('test'), new Address('','','',''), null, null, null, null, 'test_id');
         $repository->add($hotspot);
 
         $find = $repository->find('test_id');

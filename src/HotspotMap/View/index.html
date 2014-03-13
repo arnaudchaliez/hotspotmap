@@ -1,9 +1,49 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title></title>
-</head>
-<body>
-    <h1>Hello, {{name}}!</h1>
-</body>
-</html>
+{% extends "Layout/base.html" %}
+
+{% block title %}Index{% endblock %}
+{% block content %}
+
+
+<div class="well fill span3">
+    <div id="list-places">
+        <span class="title">
+            List of places
+
+            {% for hotspot in hotspots %}
+                {{ include('Hotspot/_hotspot_button.html', { hotspot: hotspot }, with_context = false) }}
+            {% endfor %}
+
+        </span>
+    </div>
+</div>
+<div id="map" class="well fill span6">
+    <div id="center-map">
+        <div id="map-canvas"> </div>
+        <div>
+            XXX Persons loves this place.
+
+            <div id="twitter-button">
+                I was here.
+            </div>
+        </div>
+    </div>
+</div>
+<div class="well fill span4">
+</div>
+
+{% endblock %}
+
+{% block js %}
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+<script type="text/javascript">
+    function initialize() {
+        var mapOptions = {
+            center: new google.maps.LatLng(-34.397, 150.644),
+            zoom: 14
+        };
+        var map = new google.maps.Map(document.getElementById("map-canvas"),
+                mapOptions);
+    }
+    google.maps.event.addDomListener(window, 'load', initialize);
+</script>
+{% endblock %}

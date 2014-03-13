@@ -8,7 +8,12 @@
 
 namespace HotspotMap\CoreDomain\ValueObject;
 
-class Equipment
-{
-
-} 
+class Equipment {
+    const Free = 0;
+    const Sofa = 1;
+    const Coffee = 2;
+    const Beer = 3;
+    const Pizza = 4;
+    const Restaurant = 5;
+    const FastFood = 6;
+}

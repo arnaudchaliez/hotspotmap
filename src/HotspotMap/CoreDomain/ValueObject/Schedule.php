@@ -47,4 +47,9 @@ class Schedule
         }
         $this->timePeriods[] = $period;
     }
+
+    public function __toString()
+    {
+        return $this->timePeriods->getBegin() . ' - ' . $this->timePeriods->getEnd();
+    }
 } 

@@ -92,18 +92,19 @@ $app->get('/users', 'user.controller:usersAction');
 
 //hotspots
 $app->get('/hotspots', 'hotspot.controller:hotspotsAction');
-
+$app->get('/hotspots/{hotspotId}', 'hotspot.controller:showAction');
+$app->get('/hotspots/findByName/{hotspotName}', 'hotspot.controller:findByNameAction');
+$app->put('/hotspots/{hotspotId}', 'hotspot.controller:updateAction');
 
 /** events management */
 
-/*
 $app->before(function (Request $request) {
     if (0 === strpos($request->headers->get('Content-Type'), 'application/json')) {
         $data = $app['rest.decoder.json']($request->request);
         $request->request->replace(is_array($data) ? $data : array());
     }
 });
-*/
+
 
 // rest response
 $app->after(function (Request $request, Response $response) use ($app) {
