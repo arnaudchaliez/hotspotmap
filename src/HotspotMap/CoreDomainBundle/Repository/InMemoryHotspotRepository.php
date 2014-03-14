@@ -29,7 +29,7 @@ class InMemoryHotspotRepository implements HotspotRepository
         $this->memory = new InMemoryMapper();
         $equipments = array( Equipment::FastFood, Equipment::Sofa );
         $this->memory->persist(
-            new Hotspot(new PlaceIdentity('McDonald\'s', 'Famous Fast-food restaurant', '/pictures/mcdonald.png'), new Address('Avenue des États Unis', '63000', 'Clermont-Ferrand', 'France'), new Price(1.0), null, $equipments)
+            new Hotspot(new PlaceIdentity('McDonald\'s', 'Famous Fast-food restaurant', 'mcdonald.png'), new Address('Avenue des États Unis', '63000', 'Clermont-Ferrand', 'France'), new Price(1.0), null, $equipments, null, 'hotspot_1')
         );
         $this->memory->persist(
             new Hotspot(new PlaceIdentity('Starbucks Des Halles'), new Address('place de la Rotonde', '75001', 'Paris ', 'France'))

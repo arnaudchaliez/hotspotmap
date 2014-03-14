@@ -1,15 +1,19 @@
 <div>
-    <h3>{{ hotspot.getPlace().getName() }}</h3>
-    <div>
-        <p>{{ hotspot.getPlace().getDescription() }}</p>
+    <div id="hotspot-infos">
+        <h3>{{ hotspot.getPlace().getName() }}</h3>
+        <div>
+            <p>{{ hotspot.getPlace().getDescription() }}</p>
+        </div>
     </div>
+
+    <div class='thumbnail' id='hotspot-logo'>
+        <img src="/hotspotmap/web/upload/{{ hotspot.getPlace().getThumbnail() }}" />
+    </div>
+
     <div>
         {% for equipment in hotspot.getEquipments() %}
         <div class="icon-large icon-{{ equipment }}" ></div>
         {% endfor %}
     </div>
 
-    <div>
-        <img src="{{ hotspot.getPlace().getThumbnail() }}" />
-    </div>
 </div>

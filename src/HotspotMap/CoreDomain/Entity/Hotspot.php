@@ -14,6 +14,7 @@ use HotspotMap\CoreDomain\ValueObject\Price;
 use HotspotMap\CoreDomain\ValueObject\Schedule;
 use HotspotMap\CoreDomain\ValueObject\Equipment;
 use HotspotMap\CoreDomain\ValueObject\SocialInformation;
+use HotspotMap\CoreDomain\ValueObject\Status;
 
 class Hotspot extends Entity
 {
@@ -23,6 +24,7 @@ class Hotspot extends Entity
     private $price;
     private $equipments;
     private $socialInformations;
+    private $status;
 
     public function __construct(PlaceIdentity $place, Address $address, Price $price = null, Schedule $schedule = null, array $equipments = null, SocialInformation $socialInformation = null, $id = null)
     {
@@ -35,6 +37,7 @@ class Hotspot extends Entity
         if ($socialInformation === null)
             $socialInformation = new SocialInformation();
         $this->socialInformations   = $socialInformation;
+        $this->status               = Status::Waiting;
     }
 
     public function __clone()
@@ -103,5 +106,23 @@ class Hotspot extends Entity
     public function getSocialInformation()
     {
         return $this->socialInformations;
+    }
+
+    /**
+     * @return Status
+    */
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    public function validate()
+    {
+        $this->status = Status::Validate;
+    }
+
+    public function rejected()
+    {
+        $this->status = Status::Rejected;
     }
 }

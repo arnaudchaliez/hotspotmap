@@ -10,6 +10,7 @@ namespace HotspotMap\Helper;
 
 use Buzz\Browser;
 use Buzz\Client\Curl;
+use Geocoder\Geocoder;
 use HotspotMap\CoreDomain\ValueObject\Address;
 use HotspotMap\CoreDomain\ValueObject\Geolocation;
 use Geocoder\HttpAdapter\BuzzHttpAdapter;
@@ -44,10 +45,13 @@ class GeocoderHelper
         if ($key && $privateId)
             $providers[] =  new GoogleMapsBusinessProvider($this->adapter,$privateId , $key, $locale, $region, $useSsl);
 
-        $this->geocoder->registerProvider($providers);
+        foreach ($providers as $provider)
+        {
+            $this->geocoder->registerProvider($provider);
+        }
     }
 
-    private function AddressFromGeolocation(Geolocation $geolocation)
+    public function addressFromGeolocation(Geolocation $geolocation)
     {
         $geocode = $this->geocoder->reverse(
             $geolocation->getLatitude(),
@@ -63,7 +67,7 @@ class GeocoderHelper
         return $address;
     }
 
-    private function GeolocationFromAddress(Address $address)
+    public function geolocationFromAddress(Address $address)
     {
         $geocode = $this->geocoder->geocode(
             $address->getStreet() . ' ' . $address->getCity() . ' ' . $address->getCountry()

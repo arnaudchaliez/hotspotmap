@@ -82,3 +82,37 @@ body {
 .icon-large.icon-5{ background-position: -184px -1004px;  }
 /* fast-food */
 .icon-large.icon-6{ background-position: -184px -970px;  }
+
+/** ------- form add hotspots ----- */
+
+/** todo */
+#hotspot-form-column {
+    font-size: 0.8em;
+    height: 100%;
+    overflow: scroll;
+}
+
+#hotspot-form-column .control-label {
+    margin: 5px;
+    float: left;
+}
+#hotspot-form-column .control-group {
+    width: 100%;
+}
+
+#hotspot-form-column input {
+    width: 100%;
+}
+
+/** ------ thumnail hotspot ------ */
+#hotspot-logo {
+    width:25%;
+    margin-right: 5%;
+    margin-top: 10px;
+    float: right;
+}
+
+#hotspot-infos {
+    width:70%;
+    float: left;
+}

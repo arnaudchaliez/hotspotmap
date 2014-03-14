@@ -34,6 +34,26 @@ class HotspotController {
         return $app['helper.response']->handle($this->hotspotRepository->findAll(), 'Hotspot/hotspots.html');
     }
 
+    public function valideHotspotsAction(Request $request, Application $app)
+    {
+        $hotspots = $this->hotspotRepository->findSatisfying(new ValueSpecification('getStatus', Status::Validate));
+
+        if (null !== $hotspots)
+            return $app['helper.response']->handle($hotspots, 'Hotspot/hotspots.html');
+        else
+            return $app['helper.response']->handle('no valide hotspots found', 'error.html', 404);
+    }
+
+    public function waitingHotspotsAction(Request $request, Application $app)
+    {
+        $hotspots = $this->hotspotRepository->findSatisfying(new ValueSpecification('getStatus', Status::Waiting));
+
+        if (null !== $hotspots)
+            return $app['helper.response']->handle($hotspots, 'Hotspot/hotspots.html');
+        else
+            return $app['helper.response']->handle('no valide hotspots found', 'error.html', 404);
+    }
+
     public function showAction(Request $request, Application $app, $hotspotId)
     {
         $hotspot = $this->hotspotRepository->find($hotspotId);
@@ -73,8 +93,9 @@ class HotspotController {
 
     public function updateAction(Request $request, Application $app)
     {
-        //return $app['helper.response']->handle($this->hotspotRepository->findAll(), 'Hotspot/hotspots.html');
+        //todo
     }
+
     public function deleteAction($id)
     {
         $hotspot = $this->hotspotRepository->findSatisfying(new ValueSpecification('getId', $id));
@@ -92,7 +113,7 @@ class HotspotController {
                 new Address($street, $postalCode, $city, $country),
                 new Price($price),
                 new Schedule(),
-                new array($equipments),
+                array($equipments),
                 new SocialInformation($facebook, $twitter)
             );
 

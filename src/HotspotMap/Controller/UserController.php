@@ -25,14 +25,37 @@ class UserController {
     public function usersAction(Request $request, Application $app)
     {
         return $app['helper.response']->handle($this->userRepository->findAll(), 'User/users.html');
+    }
 
-        /* return new Response(
-            $this->application['rest.serializer']->serialize($this->userRepository->findAll(), 'json')
-        ); */
+    public function loginAction(Request $request, Application $app)
+    {
+        extract($request->attributes);
+        if (isset($username) && isset($password))
+        {
+            //todo check
+            //todo session
+        }
+        else {
+            return $app['helper.response']->handle('username and password required', 'User/login.html', 400);
+        }
+
+        return $app['helper.response']->handle('', 'index.html');
+    }
+
+    public function logoutAction(Request $request, Application $app)
+    {
+        extract($request->attributes);
+        if (isset($username) && isset($password))
+        {
+            //todo check
+            //todo session
+        }
+
+        return $app['helper.response']->handle('', 'index.html');
     }
 
 
-    public function delete($id)
+    public function deleteAction($id)
     {
         $user = $this->userRepository->findSatisfying(new ValueSpecification('getId', $id));
         return new Response($this->userRepository->remove($user));

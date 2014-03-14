@@ -94,11 +94,20 @@ $app['debug'] = true; //'dev' === getenv('APPLICATION_ENV');
 
 /** routes */
 
-//home
+//home - website
 $app->get('/', 'home.controller:indexAction');
+$app->get('/about', 'home.controller:aboutAction');
+//$app->get('/{hotspotId}', 'home.controller:selectAction');
+
+$app->get('/login', function (Request $request) use ($app) {
+    return $app['twig']->render('User/login.html');
+});
+$app->post('/login', 'user.controller:loginAction');
 
 //users
 $app->get('/users', 'user.controller:usersAction');
+$app->delete('/users/{userId}', 'user.controller:deleteAction');
+
 
 //hotspots
 $app->get('/hotspots', 'hotspot.controller:hotspotsAction');

@@ -1,0 +1,21 @@
+{% extends "Layout/base.html" %}
+
+{% block title %}About{% endblock %}
+{% block content %}
+
+<h3>About</h3>
+<div>
+    {{ data['name'] }}
+</div>
+<div>
+    {{ data['description'] }}
+</div>
+<div>
+    {% for author in data['authors'] %}
+        {{ author }}
+    {% endfor %}
+</div>
+<div>
+    {{ data['licence'] }}
+</div>
+{% endblock %}

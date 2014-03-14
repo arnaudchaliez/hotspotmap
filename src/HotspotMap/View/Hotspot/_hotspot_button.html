@@ -1,4 +1,7 @@
-<button id="{{ hotspot.getId() }}" class="btn btn-large btn-block" type="button">
-    {{ hotspot.getPlace().getName() }}
-    <span class="loves right">{{ hotspot.getSocialInformation().getLoves() }} </span>
-</button>
+<a href="{{ hotspot.getId() }}" class="btn btn-large btn-block">
+    <div class="htspot-name pull-left">{{ hotspot.getPlace().getName() }}</div>
+    <div class="pull-right">
+        <span class="glyphicon glyphicon-comment right">{{ hotspot.getSocialInformation().getLoves() }} </span>
+        <span class="glyphicon glyphicon-star right">{{ hotspot.getSocialInformation().getLoves() }} </span>
+    </div>
+</a>
