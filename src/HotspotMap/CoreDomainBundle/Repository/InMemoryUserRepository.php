@@ -11,6 +11,7 @@ namespace HotspotMap\CoreDomainBundle\Repository;
 use HotspotMap\CoreDomain\Entity\User;
 use HotspotMap\CoreDomain\Repository\UserRepository;
 use HotspotMap\CoreDomain\ValueObject\Name;
+use HotspotMap\CoreDomain\ValueObject\Role;
 use HotspotMap\CoreDomainBundle\Specification\Specification;
 use HotspotMap\Helper\SpecificationFilter;
 use HotspotMap\Persistence\InMemoryMapper;
@@ -24,13 +25,13 @@ class InMemoryUserRepository implements UserRepository
     public function __construct()
     {
         $this->memory = new InMemoryMapper();
-        $this->memory->persist(new User(new Name('Chuck', 'Norris')));
-        $this->memory->persist(new User(new Name('Silvia', 'Godoy')));
-        $this->memory->persist(new User(new Name('Wade', 'Bruton')));
-        $this->memory->persist(new User(new Name('Pearl', 'Bolt')));
-        $this->memory->persist(new User(new Name('Margaret', 'May')));
-        $this->memory->persist(new User(new Name('Susie', 'Pearson')));
-        $this->memory->persist(new User(new Name('Melvin', 'Cole')));
+        $this->memory->persist(new User(new Name('Chuck', 'Norris'), new Role('user', ''), 'hs1@local.fr'));
+        $this->memory->persist(new User(new Name('Silvia', 'Godoy'), new Role('user', ''), 'hs2@local.fr'));
+        $this->memory->persist(new User(new Name('Wade', 'Bruton'), new Role('user', ''), 'hs3@local.fr'));
+        $this->memory->persist(new User(new Name('Pearl', 'Bolt'), new Role('user', ''), 'hs4@local.fr'));
+        $this->memory->persist(new User(new Name('Margaret', 'May'), new Role('user', ''), 'hs5@local.fr'));
+        $this->memory->persist(new User(new Name('Susie', 'Pearson'), new Role('user', ''), 'hs6@local.fr'));
+        $this->memory->persist(new User(new Name('Melvin', 'Cole'), new Role('user', ''), 'hs7@local.fr'));
     }
 
     public function add(User $user)

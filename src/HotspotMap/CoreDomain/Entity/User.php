@@ -9,21 +9,24 @@
 namespace HotspotMap\CoreDomain\Entity;
 
 use HotspotMap\CoreDomain\ValueObject\Name;
+use HotspotMap\CoreDomain\ValueObject\Role;
 
 class User extends Entity
 {
     private $name;
 
-    public function __construct(Name $name, $id = null)
+    public function __construct(Name $name, Role $role, $id = null)
     {
         parent::__construct($id, 'user_');
         $this->name = $name;
+        $this->role = $role;
     }
 
     public function __clone()
     {
         parent::__clone();
         $this->name = clone $this->name;
+        $this->role = clone $this->role;
     }
 
     /**
@@ -32,5 +35,13 @@ class User extends Entity
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * @return Role
+     */
+    public function getRoe()
+    {
+        return $this->role;
     }
 }
