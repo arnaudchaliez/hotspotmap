@@ -7,7 +7,7 @@
     </div>
 
     <div class='thumbnail' id='hotspot-logo'>
-        <img src="/hotspotmap/web/upload/{{ hotspot.getPlace().getThumbnail() }}" />
+        <img src="{{ app.request.basepath }}/upload/{{ hotspot.getPlace().getThumbnail() }}" />
     </div>
 
     <div>

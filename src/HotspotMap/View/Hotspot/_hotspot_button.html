@@ -1,4 +1,4 @@
-<a href="/hotspots/{{ hotspot.getId() }}#" class="btn btn-large btn-block">
+<a href="{{ app.request.basepath }}/hotspots/{{ hotspot.getId() }}#" class="btn btn-large btn-block">
     <div class="htspot-name pull-left">{{ hotspot.getPlace().getName() }}</div>
     <div class="pull-right">
         <span class="glyphicon glyphicon-comment right">{{ hotspot.getSocialInformation().getLoves() }} </span>
