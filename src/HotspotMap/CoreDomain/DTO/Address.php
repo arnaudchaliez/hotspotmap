@@ -13,13 +13,13 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 class Address
 {
-    private $street;
+    public $street;
 
-    private $postalCode;
+    public $postalCode;
 
-    private $city;
+    public $city;
 
-    private $country;
+    public $country;
 
     public function __construct($street, $postalCode, $city, $country)
     {

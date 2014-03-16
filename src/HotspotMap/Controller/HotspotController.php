@@ -107,21 +107,29 @@ class HotspotController
         return new Response($this->hotspotRepository->remove($hotspot));
     }
 
-    protected function createHotspotFromRequest(Request $request)
+    protected function createHotspotFromRequest(Request $request, Application $app)
     {
         Hotspot::$hotspot = null;
-        extract($request->attributes);
-        //todo verif params
-        if (isset($name))
-            $hotspot = new Hotspot(
-                new PlaceIdentity($name, $description, $thumbnail),
-                new Address($street, $postalCode, $city, $country),
-                new Price($price),
-                new Schedule(),
-                array($equipments),
-                new SocialInformation($facebook, $twitter)
-            );
+        {
+            extract($request->attributes);
 
+            // Create data transfert objects
+            $addressDTO = new \HotspotMap\CoreDomain\DTO\Address($street, $city, $postalCode, $country);
+            $priceDTO = new \HotspotMap\CoreDomain\DTO\Price($price);
+
+            // Validate them
+            if ($app['validator']->validate($addressDTO) &&
+                $app['validator']->validate($priceDTO)) {
+                $hotspot = new Hotspot(
+                    new PlaceIdentity($name, $description, $thumbnail),
+                    $addressDTO->toValueObject(),
+                    $priceDTO->toValueObject(),
+                    new Schedule(),
+                    array($equipments),
+                    new SocialInformation($facebook, $twitter)
+                );
+            }
+        }
         return $hotspot;
     }
 } 

@@ -22,6 +22,11 @@
                     <li><a href="/">Home</a></li>
                     <li><a href="#moderate">Moderate</a></li>
                     <li><a href="/about">About</a></li>
+                    {% if ( username is defined ) and ( username != '' ) %}
+                    <li><a href="/logout">Logout ({{ username }})</a></li>
+                    {% else %}
+                    <li><a href="/login">Login</a></li>
+                    {% endif %}
                 </ul>
             </div><!--/.nav-collapse -->
         </div>
@@ -43,7 +48,7 @@
     <!-- Bootstrap core JavaScript
       ================================================== -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <script src="../web/js/bootstrap.js"></script>
+    <script src="/js/bootstrap.js"></script>
     <!-- Custom JavaScript
       ================================================== -->
     {% block js %}{% endblock %}
