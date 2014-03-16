@@ -83,7 +83,7 @@ class HotspotController
 
     public function addAction(Request $request, Application $app)
     {
-        $hotspot = $this->createHotspotFromRequest($request);
+        $hotspot = $this->createHotspotFromRequest($request, $app);
 
         if ($hotspot) {
             if ($this->hotspotRepository->add($hotspot)) {
@@ -109,25 +109,32 @@ class HotspotController
 
     protected function createHotspotFromRequest(Request $request, Application $app)
     {
-        Hotspot::$hotspot = null;
+        $hotspot = null;
         {
-            extract($request->attributes);
+            $price = 0;
+            $equipments = $facebook = $twitter = $description = $thumbnail = null;
 
-            // Create data transfert objects
-            $addressDTO = new \HotspotMap\CoreDomain\DTO\Address($street, $city, $postalCode, $country);
-            $priceDTO = new \HotspotMap\CoreDomain\DTO\Price($price);
+            extract($request->request->all());
 
-            // Validate them
-            if ($app['validator']->validate($addressDTO) &&
-                $app['validator']->validate($priceDTO)) {
-                $hotspot = new Hotspot(
-                    new PlaceIdentity($name, $description, $thumbnail),
-                    $addressDTO->toValueObject(),
-                    $priceDTO->toValueObject(),
-                    new Schedule(),
-                    array($equipments),
-                    new SocialInformation($facebook, $twitter)
-                );
+            if ( isset($name) && isset($street) && isset($city) && isset($postalCode) && isset($country))
+            {
+
+                // Create data transfert objects
+                $addressDTO = new \HotspotMap\CoreDomain\DTO\Address($street, $city, $postalCode, $country);
+                $priceDTO = new \HotspotMap\CoreDomain\DTO\Price($price);
+
+                // Validate them
+                if ($app['validator']->validate($addressDTO) &&
+                    $app['validator']->validate($priceDTO)) {
+                    $hotspot = new Hotspot(
+                        new PlaceIdentity($name, $description, $thumbnail),
+                        $addressDTO->toValueObject(),
+                        $priceDTO->toValueObject(),
+                        new Schedule(),
+                        array($equipments),
+                        new SocialInformation($facebook, $twitter)
+                    );
+                }
             }
         }
         return $hotspot;

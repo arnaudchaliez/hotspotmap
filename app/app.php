@@ -30,6 +30,7 @@ $app->get('/hotspots', 'hotspot.controller:hotspotsAction');
 $app->get('/hotspots/{hotspotId}', 'hotspot.controller:showAction');
 $app->get('/hotspots/findByName/{hotspotName}', 'hotspot.controller:findByNameAction');
 $app->put('/hotspots/{hotspotId}', 'hotspot.controller:updateAction');
+$app->post('/hotspots', 'hotspot.controller:addAction');
 
 //geocoder
 $app->get('/geocoder/location/{latitude},{longitude}', 'geocoder.controller:addressFromGeolocation');
