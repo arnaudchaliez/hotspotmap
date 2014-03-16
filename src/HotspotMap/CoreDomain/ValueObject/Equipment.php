@@ -8,7 +8,8 @@
 
 namespace HotspotMap\CoreDomain\ValueObject;
 
-class Equipment {
+class Equipment
+{
     const Free = 0;
     const Sofa = 1;
     const Coffee = 2;

@@ -42,7 +42,7 @@ class InMemoryHotspotRepositoryTest extends \PHPUnit_Framework_TestCase
         $hotspots = $repository->findSatisfying(new ValueSpecification('getId', 'test_id'));
 
         $this->assertCount(1, $hotspots);
-        $this->assertEquals($hotspots, $hotspots[0]);
+        $this->assertEquals($hotspot, $hotspots[0]);
     }
 
     public function testFindAndRemove()

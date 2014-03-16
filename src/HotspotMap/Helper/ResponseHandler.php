@@ -13,34 +13,38 @@ use Symfony\Component\HttpFoundation\Response;
 
 class ResponseHandler
 {
-    private $serializers;
+    private $serializer;
 
     private $request;
 
-    public function __construct($serializers, Request $request, $template, array $acceptableMimeTypes)
+    public function __construct($serializer, Request $request, $template, array $acceptableMimeTypes)
     {
-        $this->serializers          = $serializers;
+        $this->serializer           = $serializer;
         $this->request              = $request;
         $this->template             = $template;
         $this->acceptableMimeTypes  = $acceptableMimeTypes;
     }
 
-    public function handle($data, $view = '', $statusCode = 200, array $headers = [], Response $response = null)
+    public function handle($data, $view = '', $statusCode = 200, array $headers = [], Response $response = null, $defaultFormat = 'html')
     {
-        $format = 'html';
+        $format = $defaultFormat;
 
         $negotiator = new \Negotiation\Negotiator();
         $priorities   = array('text/html', 'application/json', 'application/xml', '*/*');
         $contentType = $negotiator->getBest($this->request->headers->get('Accept'), $priorities);
-        $mymeType = $contentType->getValue();
+        $mimeType = $contentType->getValue();
 
-        switch($mymeType) {
+        switch($mimeType) {
             case 'application/xml':
                 $format = 'xml';
                 break;
              case 'application/json':
                 $format = 'json';
                 break;
+        }
+
+        if (null !== $this->request->get('format')) {
+            $format = $this->request->get('format');
         }
 
         if ($format !== 'html')
@@ -69,11 +73,11 @@ class ResponseHandler
                 $headers
             ));
 
-            $response->setContent($this->serializer->serialize($data, $format));
+            return $response->setContent($this->serializer->serialize($data, $format));
         }
         else
         {
             return $this->template->render($view,  array('data' => $data));
         }
     }
-} 
+}

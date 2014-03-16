@@ -12,7 +12,8 @@ use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class HomeController {
+class HomeController
+{
     public function indexAction(Request $request, Application $app)
     {
         $hotspots = $app['repository.hotspot']->findAll();

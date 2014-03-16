@@ -20,8 +20,8 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class HotspotController {
-
+class HotspotController
+{
     protected $hotspotRepository;
 
     public function __construct($repository)
@@ -38,50 +38,55 @@ class HotspotController {
     {
         $hotspots = $this->hotspotRepository->findSatisfying(new ValueSpecification('getStatus', Status::Validate));
 
-        if (null !== $hotspots)
+        if (null !== $hotspots) {
             return $app['helper.response']->handle($hotspots, 'Hotspot/hotspots.html');
-        else
-            return $app['helper.response']->handle('no valide hotspots found', 'error.html', 404);
+        }
+        else {
+            return $app['helper.response']->handle('no valid hotspots found', 'error.html', 404);
+        }
     }
 
     public function waitingHotspotsAction(Request $request, Application $app)
     {
         $hotspots = $this->hotspotRepository->findSatisfying(new ValueSpecification('getStatus', Status::Waiting));
 
-        if (null !== $hotspots)
+        if (null !== $hotspots) {
             return $app['helper.response']->handle($hotspots, 'Hotspot/hotspots.html');
-        else
-            return $app['helper.response']->handle('no valide hotspots found', 'error.html', 404);
+        }
+        else {
+            return $app['helper.response']->handle('no valid hotspots found', 'error.html', 404);
+        }
     }
 
     public function showAction(Request $request, Application $app, $hotspotId)
     {
         $hotspot = $this->hotspotRepository->find($hotspotId);
-        if (null !== $hotspot)
+        if (null !== $hotspot) {
             return $app['helper.response']->handle($hotspot, 'Hotspot/hotspot.html');
-        else
+        }
+        else {
             return $app['helper.response']->handle('hotspot not found', 'error.html', 404);
+        }
     }
 
     public function findByNameAction(Request $request, Application $app, $hotspotName)
     {
         $hotspots = $this->hotspotRepository->findSatisfying(new ValueSpecification('getName', $hotspotName));
 
-        if (null !== $hotspots)
+        if (null !== $hotspots) {
             return $app['helper.response']->handle($hotspots, 'Hotspot/hotspots.html');
-        else
+        }
+        else {
             return $app['helper.response']->handle('hotspot not found', 'error.html', 404);
+        }
     }
 
     public function addAction(Request $request, Application $app)
     {
-
         $hotspot = $this->createHotspotFromRequest($request);
 
-        if ($hotspot)
-        {
-            if ($this->hotspotRepository->add($hotspot))
-            {
+        if ($hotspot) {
+            if ($this->hotspotRepository->add($hotspot)) {
                 return $app['helper.response']->handle($hotspot, 'Hotspot/hotspot.html', 201);
             }
 

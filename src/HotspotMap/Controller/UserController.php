@@ -13,8 +13,8 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class UserController {
-
+class UserController
+{
     protected $userRepository;
 
     public function __construct($repository)
@@ -53,7 +53,6 @@ class UserController {
 
         return $app['helper.response']->handle('', 'index.html');
     }
-
 
     public function deleteAction($id)
     {

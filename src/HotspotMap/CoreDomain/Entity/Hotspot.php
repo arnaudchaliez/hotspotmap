@@ -15,9 +15,12 @@ use HotspotMap\CoreDomain\ValueObject\Schedule;
 use HotspotMap\CoreDomain\ValueObject\Equipment;
 use HotspotMap\CoreDomain\ValueObject\SocialInformation;
 use HotspotMap\CoreDomain\ValueObject\Status;
+use HotspotMap\Helper\CloneHelper;
 
 class Hotspot extends Entity
 {
+    use CloneHelper;
+
     private $place;
     private $address;
     private $schedule;
@@ -28,14 +31,15 @@ class Hotspot extends Entity
 
     public function __construct(PlaceIdentity $place, Address $address, Price $price = null, Schedule $schedule = null, array $equipments = null, SocialInformation $socialInformation = null, $id = null)
     {
-        parent::__construct($id, 'hotspot_');
+        parent::__construct($id, 'hs_');
         $this->place                = $place;
         $this->schedule             = $schedule;
         $this->address              = $address;
         $this->price                = $price;
         $this->equipments           = $equipments;
-        if ($socialInformation === null)
+        if ($socialInformation === null) {
             $socialInformation = new SocialInformation();
+        }
         $this->socialInformations   = $socialInformation;
         $this->status               = Status::Waiting;
     }
@@ -43,13 +47,13 @@ class Hotspot extends Entity
     public function __clone()
     {
         parent::__clone();
-        $this->place                = clone $this->place;
-        $this->schedule             = clone $this->schedule;
-        $this->address              = clone $this->address;
-        $this->price                = clone $this->price;
+        $this->place                = $this->cloneAttribute($this->place);
+        $this->schedule             = $this->cloneAttribute($this->schedule);
+        $this->address              = $this->cloneAttribute($this->address);
+        $this->price                = $this->cloneAttribute($this->price);
         //todo clone
-        //$this->equipments           = clone $this->equipments;
-        $this->socialInformations   = clone $this->socialInformations;
+        //$this->equipments           = $this->cloneAttribute($this->equipments);
+        $this->socialInformations   =$this->cloneAttribute($this->socialInformations);
     }
 
     /**
