@@ -33,7 +33,7 @@
 
 {% block js %}
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
-<script src="/js/map.js"></script>
+<script src="{{ app.request.basepath }}/js/map.js"></script>
 <script type="text/javascript">
     /** CONFIGURATION DISKS */
     var disqus_shortname = 'hotspotm'; // required: replace example with your forum shortname
