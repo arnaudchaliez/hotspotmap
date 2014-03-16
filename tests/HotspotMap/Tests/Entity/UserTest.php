@@ -10,12 +10,13 @@ namespace HotspotMap\Tests\Entity;
 
 use HotspotMap\CoreDomain\Entity\User;
 use HotspotMap\CoreDomain\ValueObject\Name;
+use HotspotMap\CoreDomain\ValueObject\Role;
 
 class UserTest extends \PHPUnit_Framework_TestCase
 {
     public function testConstruct()
     {
-        $user = new User(new Name('Chuck', 'Norris') );
+        $user = new User(new Name('Chuck', 'Norris'), new Role('user', '') );
 
         $this->assertTrue(null !== $user->getId());
         $this->assertEquals($user->getName()->getFirstName(), 'Chuck');
@@ -23,7 +24,7 @@ class UserTest extends \PHPUnit_Framework_TestCase
 
     public function testClone()
     {
-        $users[] = new User(new Name('Chuck', 'Norris') );
+        $users[] = new User(new Name('Chuck', 'Norris'), new Role('user', '') );
         $users[] = $users[0];
         $users[] = clone $users[0];
 

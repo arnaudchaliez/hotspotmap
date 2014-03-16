@@ -11,6 +11,7 @@
         "symfony/serializer": "2.4.2",
         "kriswallsmith/buzz": "*",
         "symfony/validator": "~2.3",
+        "symfony/security": "~2.3",
         "fp/lightopenid": "dev-master"
     },
 

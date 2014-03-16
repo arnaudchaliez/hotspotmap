@@ -5,12 +5,11 @@
  * Created by Jérémy BOUNY & Arnaud CHALIEZ.
  * Project: hotspotmap
  */
-$app = require_once __DIR__.'/bootstrap.php';
-
 use Symfony\Component\HttpFoundation\Request;
 
-/** routes */
+$app = require __DIR__.'/bootstrap.php';
 
+/** routes */
 //home - website
 $app->get('/', 'home.controller:indexAction')->bind('homepage');
 $app->get('/about', 'home.controller:aboutAction');

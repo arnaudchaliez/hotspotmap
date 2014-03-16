@@ -10,6 +10,7 @@ namespace HotspotMap\Tests\Repository;
 
 use HotspotMap\CoreDomain\Entity\User;
 use HotspotMap\CoreDomain\ValueObject\Name;
+use HotspotMap\CoreDomain\ValueObject\Role;
 use HotspotMap\CoreDomainBundle\Repository\InMemoryUserRepository;
 use HotspotMap\CoreDomainBundle\Specification\ValueSpecification;
 
@@ -35,7 +36,7 @@ class InMemoryUserRepositoryTest extends \PHPUnit_Framework_TestCase
     {
         $repository = new InMemoryUserRepository();
 
-        $user = new User(new Name(), 'test_id');
+        $user = new User(new Name(), new Role('user', ''), 'test_id');
         $repository->add($user);
 
         $users = $repository->findSatisfying(new ValueSpecification('getId', 'test_id'));
@@ -48,7 +49,7 @@ class InMemoryUserRepositoryTest extends \PHPUnit_Framework_TestCase
     {
         $repository = new InMemoryUserRepository();
 
-        $user = new User(new Name(), 'test_id');
+        $user = new User(new Name(), new Role('user', ''), 'test_id');
         $repository->add($user);
 
         $find = $repository->find('test_id');

@@ -9,7 +9,6 @@ require_once __DIR__.'/../vendor/autoload.php';
 require_once __DIR__.'/../vendor/fp/lightopenid/openid.php';
 
 use Silex\Application;
-use Silex\Provider\SessionServiceProvider;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Serializer\Serializer;
@@ -19,21 +18,37 @@ use Symfony\Component\Serializer\Normalizer\GetSetMethodNormalizer;
 
 $app = new Application();
 
-$function = new Twig_SimpleFunction('getNumberEquipments', function () {
+$getNumberEquipments = new Twig_SimpleFunction('getNumberEquipments', function () {
     return \HotspotMap\CoreDomain\ValueObject\Equipment::NumberEquipments;
 });
 
 $app->register(new Silex\Provider\TwigServiceProvider(), array(
     'twig.path' => __DIR__.'/../src/HotspotMap/View'
 ));
-$app['twig']->addFunction($function);
+$app['twig']->addFunction($getNumberEquipments);
 
-$app->register(new SessionServiceProvider());
+$app->register(new Silex\Provider\SessionServiceProvider());
 $app->register(new Silex\Provider\ServiceControllerServiceProvider());
 $app->register(new Silex\Provider\ValidatorServiceProvider());
 $app->register(new Silex\Provider\UrlGeneratorServiceProvider());
 $app->register(new \HotspotMap\Provider\Service\Security());
-
+/*$app->register(new Silex\Provider\SecurityServiceProvider(), array(
+    'security.firewalls' => array(
+        'default' => array(
+            'pattern' => '^.*$',
+            'anonymous' => true,
+            'form' => array('/login' => '/', 'check_path' => 'connexion'),
+            'logout' => array('/logout' => '/logout'),
+            'users' => $app->share(function() use ($app) {
+                return new HotspotMap\Provider\UserProvider($app['repository.user']);
+            }),
+        ),
+    ),
+    'security.access_rules' => array(
+        array('^/.+$', 'ROLE_USER'),
+        array('^/foo$', ''), // Cette url est accessible en mode non connecté
+    )
+));*/
 
 //serializers
 
