@@ -12,6 +12,10 @@
         "kriswallsmith/buzz": "*",
         "symfony/validator": "~2.3"
     },
+
+    "require-dev": {
+        "symfony/browser-kit": ">=2.3,<2.4-dev"
+    },
 	
 	"config": {
         "bin-dir": "bin/"

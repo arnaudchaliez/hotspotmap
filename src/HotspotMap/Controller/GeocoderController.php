@@ -8,25 +8,39 @@
 
 namespace HotspotMap\Controller;
 
+use HotspotMap\Helper\GeocoderHelper;
 use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;
 use HotspotMap\CoreDomain\ValueObject\Address;
 use HotspotMap\CoreDomain\ValueObject\Geolocation;
 
-class HotspotController
+class GeocoderController
 {
     protected $geocoderHelper;
 
-    public function __construct($geocoderHelper)
+    public function __construct(GeocoderHelper $geocoderHelper)
     {
         $this->geocoderHelper = $geocoderHelper;
     }
 
-    public function hotspotsAction(Request $request, Application $app)
+    public function addressFromGeolocation(Request $request, Application $app, Application $app, $latitude, $longitude)
     {
-        $geolocation = new \HotspotMap\CoreDomain\DTO\Geolocation($request->query->get('lat'), $request->query->get('lng'));
-        if($app['validator']->validate($geolocation)) {
-            return $app['helper.response']->handle($this->hotspotRepository->findAll(), 'Hotspot/hotspots.html', [], null, 'json');
+        $geolocationDTO = new \HotspotMap\CoreDomain\DTO\Geolocation($latitude, $longitude);
+
+        if($app['validator']->validate($geolocationDTO)) {
+            $geolocation = $geolocationDTO->toValueObject();
+            return $app['helper.response']->handle($this->geocoderHelper->addressFromGeolocation($geolocation), '', 200, [], null, 'json');
+        }
+    }
+
+
+    public function geolocationFromAddress(Request $request, Application $app, $street, $city, $postalCode, $country)
+    {
+        $addressDTO = new \HotspotMap\CoreDomain\DTO\Address($street, $city, $postalCode, $country);
+
+        if($app['validator']->validate($addressDTO)) {
+            $address = $addressDTO->toValueObject();
+            return $app['helper.response']->handle($this->geocoderHelper->geolocationFromAddress($address), '', 200, [], null, 'json');
         }
     }
 }

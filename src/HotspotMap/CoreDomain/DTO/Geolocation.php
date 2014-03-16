@@ -23,6 +23,13 @@ class Geolocation
         $this->longitude = $longitude;
     }
 
+    public function toValueObject()
+    {
+        $latitude = (float)$this->latitude;
+        $longitude = (float)$this->longitude;
+        return new \HotspotMap\CoreDomain\ValueObject\Geolocation($latitude, $longitude);
+    }
+
     static public function loadValidatorMetadata(ClassMetadata $metadata)
     {
         $metadata->addPropertyConstraint('latitude', new Assert\Regex(array('pattern' => "/^[-]?(([0-8]?[0-9])\\.(\\d+))|(90(\\.0+)?)$/")));

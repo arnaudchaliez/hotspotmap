@@ -16,14 +16,14 @@ class GeolocationTest extends FunctionnalTestCase
 {
     public function testConstruct()
     {
-        $geolocation = new Geolocation('55.333221', '3.5694841');
-        $this->assertEquals('55.333221', $geolocation->latitude);
-        $this->assertEquals('3.5694841', $geolocation->longitude);
+        $geolocation = new Geolocation('45.777222', '3.087025');
+        $this->assertEquals('45.777222', $geolocation->latitude);
+        $this->assertEquals('3.087025', $geolocation->longitude);
     }
 
     public function testValidationOk()
     {
-        $geolocation = new Geolocation('55.333221', '3.5694841');
+        $geolocation = new Geolocation('45.777222', '3.087025');
         $this->assertCount(0, $this->app['validator']->validate($geolocation));
     }
 
@@ -35,13 +35,13 @@ class GeolocationTest extends FunctionnalTestCase
 
     public function testValidationLongOk()
     {
-        $geolocation = new Geolocation('', '3.5694841');
+        $geolocation = new Geolocation('', '3.087025');
         $this->assertCount(1, $this->app['validator']->validate($geolocation));
     }
 
     public function testValidationLatOk()
     {
-        $geolocation = new Geolocation('55.333221', '');
+        $geolocation = new Geolocation('45.777222', '');
         $this->assertCount(1, $this->app['validator']->validate($geolocation));
     }
 

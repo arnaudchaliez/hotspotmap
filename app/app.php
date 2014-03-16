@@ -86,6 +86,11 @@ $app['hotspot.controller'] = $app->share(function() use ($app) {
     return new \HotspotMap\Controller\HotspotController($app['repository.hotspot'], $app);
 });
 
+//geocoder
+$app['geocoder.controller'] = $app->share(function() use ($app) {
+    return new \HotspotMap\Controller\GeocoderController($app['helper.geocoder'], $app);
+});
+
 /** helpers */
 
 $app['helper.response'] = $app->share(function () use ($app) {
@@ -115,12 +120,15 @@ $app->post('/login', 'user.controller:loginAction');
 $app->get('/users', 'user.controller:usersAction');
 $app->delete('/users/{userId}', 'user.controller:deleteAction');
 
-
 //hotspots
 $app->get('/hotspots', 'hotspot.controller:hotspotsAction');
 $app->get('/hotspots/{hotspotId}', 'hotspot.controller:showAction');
 $app->get('/hotspots/findByName/{hotspotName}', 'hotspot.controller:findByNameAction');
 $app->put('/hotspots/{hotspotId}', 'hotspot.controller:updateAction');
+
+//geocoder
+$app->get('/geocoder/location/{latitude},{longitude}', 'geocoder.controller:addressFromGeolocation');
+$app->get('/geocoder/address/{street},{city},{postalCode},{country}', 'geocoder.controller:geolocationFromAddress');
 
 /** events management */
 
